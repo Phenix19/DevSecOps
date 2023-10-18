@@ -14,9 +14,10 @@ jobs:
         python-version: ["3.10"]
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2  # Utiliser la version 2
         with:
-          ref: '${{ github.ref_name }}'
+          ref: ${{ github.ref }}
+          repository: phenix19/devsecopslab
           token: ${{ secrets.GITLEAKS }}
       
       - name: Install dependencies 
@@ -33,26 +34,20 @@ jobs:
           docker build -t test_${{ github.run_number }}:v1 .
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@v1  # Utiliser la version 1
         with:
           username: phenix19
-          password: Amstrong@2001
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Image
         run: |
           docker tag test_${{ github.run_number }}:v1 phenix19/devsecopslab:v${{ github.run_number }}
           docker push phenix19/devsecopslab:v${{ github.run_number }}
 
-      - name: Checkout the ENV Repo
-        uses: actions/checkout@v3
-        with:
-          repository: 'phenix19/devsecopslab'
-          ref: 'main'
-          token:  ${{ secrets.GITLEAKS }}
-
       - name: Set up YQ command
         run: |
-          wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64.tar.gz -O - | sudo tar xz && sudo mv yq_linux_amd64 /usr/bin/yq
+          wget https://github.com/mikefarah/yq/releases/download/v4.2.0/yq_linux_amd64 -O /usr/bin/yq
+          chmod +x /usr/bin/yq
 
       - name: Edit manifests in ENV repo
         run: |
@@ -62,5 +57,6 @@ jobs:
         run: |
           git config  user.email "madreldieny@gmail.com"
           git config  user.name "phenix19"
-          git commit -a -m 'Env file is updated with the new image ${{ github.ref_name }}'
-          git push https://phenix19:Amstrong@2001@github.com/phenix19/devsecopslab.git
+          git commit -a -m 'Env file is updated with the new image ${{ github.ref }}'
+          git push
+
