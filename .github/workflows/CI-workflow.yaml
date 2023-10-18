@@ -66,4 +66,5 @@ jobs:
           git config  user.email "madreldieny@gmail.com"
           git config  user.name "Phenix19"
           git commit -a -m 'Env file is updated with the new image ${{ github.ref_name }}'
-          git push https://${{ secrets.GITLEAKS }}@github.comphenix19/devsecopslab.git
+          git push https://github.com/phenix19/devsecopslab.git
+
