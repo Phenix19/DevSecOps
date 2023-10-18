@@ -6,7 +6,6 @@ on:
     paths:
       - "Dockerfile"
       - "vulnerable-flask-app.py"
-      - "requirements.txt"
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -49,7 +48,7 @@ jobs:
         with:
           repository: 'phenix19/devsecopslab'
           ref: 'main'
-          token: ${{ secrets.GITLEAKS }}
+          token:  ${{ secrets.GITLEAKS }}
 
       - name: Set up YQ command
         run: |
@@ -61,7 +60,7 @@ jobs:
 
       - name: Commit and Push to ENV repo
         run: |
-          git config user.email "madreldieny@gmail.com"
-          git config user.name "phenix19"
+          git config  user.email "madreldieny@gmail.com"
+          git config  user.name "phenix19"
           git commit -a -m 'Env file is updated with the new image ${{ github.ref_name }}'
           git push https://phenix19:Amstrong@2001@github.com/phenix19/devsecopslab.git
