@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: <dockeruser>/<dockerrepo>:v25
+          image: phenix19/devsecopslab:v25
           resources:
             requests:
               memory: "50Mi"
