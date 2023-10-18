@@ -6,6 +6,7 @@ on:
     paths:
       - "Dockerfile"
       - "vulnerable-flask-app.py"
+      - "requirements.txt"
 jobs:
   scan:
     runs-on: ubuntu-latest
