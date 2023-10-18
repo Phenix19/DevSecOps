@@ -6,6 +6,8 @@ on:
     paths:
       - "Dockerfile"
       - "vulnerable-flask-app.py"
+      - "requirement.txt"  # Ajout de "requirement.txt" ici
+
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -19,15 +21,12 @@ jobs:
           ref: '${{ github.ref_name }}'
           token: ${{ secrets.GITLEAKS }}
       
-          
-
       - name: Install dependencies 
         run: |
           python -m pip install --upgrade pip
           python3 -m pip install semgrep
-          if [ -f ./requirement.txt ]; then pip install -r ./requirement.txt; fi
+          if [ -f ./requirement.txt ]; then pip install -r ./requirement.txt; fi  # Utilisation de "requirement.txt"
 
-      
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -51,7 +50,7 @@ jobs:
         with:
           repository: 'Phenix19/DevSecOpsLab'
           ref: 'main'
-          token:  ${{ secrets.GITLEAKS}}
+          token:  ${{ secrets.GITLEAKS }}
 
       - name: Set up YQ command
         run: |
