@@ -13,5 +13,5 @@ spec:
         app: my-app
     spec:
       containers:
-      - name: my-app-container
-        image: phenix19/devsecopslab:v1  # Mettez votre nom d'utilisateur Docker et le nom de votre référentiel
+        - name: my-app-container
+          image: <dockeruser>/<dockerrepo>:v22 # Mettez votre nom d'utilisateur Docker et le nom de votre référentiel
