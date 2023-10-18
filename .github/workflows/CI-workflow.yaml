@@ -6,7 +6,7 @@ on:
     paths:
       - "Dockerfile"
       - "vulnerable-flask-app.py"
-      - "requirement.txt"  # Ajout de "requirement.txt" ici
+      - "requirements.txt"  # Ajout de "requirement.txt" ici
 
 jobs:
   scan:
@@ -25,7 +25,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python3 -m pip install semgrep
-          if [ -f ./requirement.txt ]; then pip install -r ./requirement.txt; fi  # Utilisation de "requirement.txt"
+          if [ -f ./requirements.txt ]; then pip install -r ./requirements.txt; fi  # Utilisation de "requirements.txt"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
