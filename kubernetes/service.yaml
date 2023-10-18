@@ -9,5 +9,5 @@ spec:
   selector:
     app: flask
   ports:
-  - port: "30019"
+  - port: 30000
     nodePort: <tbd>
