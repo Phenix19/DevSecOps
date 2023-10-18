@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2  # Utilisation de actions/checkout@v2
         with:
           ref: '${{ github.ref }}'  # Utilisation de github.ref
-          token: ${{ secrets.GITLEAKS }}
+          token: ${{ secrets.GITHUB_TOKEN }}  # Utilisation de secrets.GITHUB_TOKEN
 
       - name: Install dependencies
         run: |
@@ -50,7 +50,7 @@ jobs:
         with:
           repository: 'Phenix19/DevSecOpsLab'
           ref: 'main'
-          token: ${{ secrets.GITLEAKS }}
+          token: ${{ secrets.GITHUB_TOKEN }}  # Utilisation de secrets.GITHUB_TOKEN
 
       - name: Set up YQ command
         run: |
@@ -64,5 +64,5 @@ jobs:
         run: |
           git config  user.email "madreldieny@gmail.com"
           git config  user.name "Phenix19"
-          git commit -a -m 'Env file is updated with the new image ${{ github.ref_name }}'
-          git push https://Phenix19:${{ secrets.GITLEAKS }}@github.com/Phenix19/DevSecOpsLab.git
+          git commit -a -m 'Env file is updated with the new image ${{ github.ref }}'
+          git push https://Phenix19:${{ secrets.GITHUB_TOKEN }}@github.com/Phenix19/DevSecOpsLab.git
