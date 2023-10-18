@@ -1,17 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-deployment
+  name: flask-app
+  labels:
+    app: flask
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: my-app
+      app: flask
   template:
     metadata:
       labels:
-        app: my-app
+        app: flask
     spec:
       containers:
-        - name: my-app-container
-          image: <dockeruser>/<dockerrepo>:v22 # Mettez votre nom d'utilisateur Docker et le nom de votre référentiel
+        - name: backend
+          image: phenix19/devsecopslab:v17
+          resources:
+            requests:
+              memory: "50Mi"
+            limits:
+              memory: "75Mi"
