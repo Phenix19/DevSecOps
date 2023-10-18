@@ -63,7 +63,7 @@ jobs:
 
       - name: Commit and Push to ENV repo
         run: |
-          git config  user.email "your email"
-          git config  user.name "${{ github.actor }}"
+          git config  user.email "madreldieny@gmail.com"
+          git config  user.name "Phenix19"
           git commit -a -m 'Env file is updated with the new image ${{ github.ref_name }}'
           git push https://${{ secrets.GITLEAKS }}@github.com<dockeruser>/<dockerrepo>.git
